@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Quote Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0099cc, #003366);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .quote-box {
+            margin: 20px 0;
+            position: relative;
+            font-size: 24px;
+        }
+
+        .quote-box i {
+            font-size: 36px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #generate-btn {
+            background: #003366;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #mood-select {
+            background: #003366;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .doodle-effects {
+            /* Use CSS to position and style your doodle effects */
+            /* You can add background images or use ::before or ::after pseudo-elements */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quote-box">
+            <i class="fas fa-quote-left"></i>
+            <p id="quote-text">"Your quote will appear here."</p>
+            <i class="fas fa-quote-right"></i>
+        </div>
+        
+        <!-- Mood selection options -->
+        <div>
+            <label for="mood-select">Select Mood: </label>
+            <select id="mood-select">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="calm">Calm</option>
+                <option value="excited">Excited</option>
+            </select>
+        </div>
+
+        <!-- Generate Quote button -->
+        <button id="generate-btn">Generate Quote</button>
+    </div>
+
+    <div class="doodle-effects">
+        <!-- You can add images of birds, flowers, and butterflies here -->
+        <!-- Position them using CSS -->
+    </div>
+
+    <script>
+        const quotes = {
+            happy: [
+                "Happiness is not something ready made. It comes from your own actions. - Dalai Lama",
+                "The only way to do great work is to love what you do. - Steve Jobs",
+                "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. - Albert Schweitzer",
+            ],
+            sad: [
+                "The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela",
+                "Sadness flies away on the wings of time. - Jean de La Fontaine",
+                "Tears come from the heart and not from the brain. - Leonardo da Vinci",
+            ],
+            calm: [
+                "In the midst of movement and chaos, keep stillness inside of you. - Deepak Chopra",
+                "Calm mind brings inner strength and self-confidence, so that's very important for good health. - Dalai Lama",
+                "The more tranquil a man becomes, the greater is his success, his influence, his power for good. - James Allen",
+            ],
+            excited: [
+                "Success is walking from failure to failure with no loss of enthusiasm. - Winston S. Churchill",
+                "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+                "Life is 10% what happens to us and 90% how we react to it. - Charles R. Swindoll",
+            ],
+        };
+
+        const quoteText = document.getElementById("quote-text");
+        const generateBtn = document.getElementById("generate-btn");
+        const moodSelect = document.getElementById("mood-select");
+
+        generateBtn.addEventListener("click", () => {
+            const selectedMood = moodSelect.value;
+            const moodQuotes = quotes[selectedMood];
+            if (moodQuotes) {
+                const randomIndex = Math.floor(Math.random() * moodQuotes.length);
+                quoteText.textContent = `"${moodQuotes[randomIndex]}"`;
+            } else {
+                quoteText.textContent = "Select a mood to get a quote.";
+            }
+        });
+    </script>
+</body>
+</html>
